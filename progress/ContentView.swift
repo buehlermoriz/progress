@@ -16,7 +16,7 @@ struct ContentView: View {
     @State var newWeight : String = ""
     @State var newIterations : String = ""
     
-    @State var showOverlay = false
+    @State var showOverlay = true
     
     
     //Editmodestuff
@@ -46,7 +46,7 @@ struct ContentView: View {
                                 HStack(alignment: .center){
                                     Text(item.weight!)
                                         .font(.largeTitle)
-                                        .foregroundColor(Color.red)
+                                        .foregroundColor(Color.theme.accent)
                                     Text("kg")}
                                 HStack(alignment: .center){Text(item.itterations!)
                                         .foregroundColor(Color.gray)
@@ -58,14 +58,20 @@ struct ContentView: View {
                     }.onDelete(perform: deleteItems)
                 }.navigationTitle("Progress")
                     .environment(\.editMode, $editMode)
-                
+                    .toolbar {
+                        ToolbarItemGroup(placement: .navigationBarTrailing){
+                            if showOverlay {
+                                addButton
+                            }
+                        }
+                    }
                     .overlay( searchBar)
-                
+                    .accentColor(.theme.accent)
                 
                 HStack{
                     editButton
                     toggleOverlay
-                }.padding(.top)
+                }.padding()
             }
             
         }
@@ -73,15 +79,15 @@ struct ContentView: View {
     
     // Mo -- Custom Views
     var searchBar : some View {
-        VStack{
+        VStack(spacing: 0){
             if showOverlay {
                 Form{
                     Section( header: Text("Add new Task")) {
                         TextField("Task", text: self.$newTask)
-                        TextField("Weight", text: self.$newWeight)
-                        TextField("Iterations", text: self.$newIterations)
+                        TextField("Weight", text: self.$newWeight).keyboardType(UIKeyboardType.numberPad)
+                        TextField("Iterations", text: self.$newIterations).keyboardType(UIKeyboardType.numberPad)
                     }
-                    addButton
+                    
                 }
                 List{
                     Section( header: Text("Preview")) {
@@ -96,7 +102,7 @@ struct ContentView: View {
                                 HStack(alignment: .center){
                                     Text(newWeight)
                                         .font(.largeTitle)
-                                        .foregroundColor(Color.red)
+                                        .foregroundColor(Color.theme.accent)
                                     Text("kg")}
                                 HStack(alignment: .center){Text(newIterations)
                                         .foregroundColor(Color.gray)
@@ -106,7 +112,6 @@ struct ContentView: View {
                         }
                 }
                 }
-    
         }
     }
     }
@@ -123,19 +128,15 @@ struct ContentView: View {
             showOverlay == false ?
             Image(systemName: "plus.circle")
                 .font(.title)
-                .foregroundColor(Color.red) :
+                .foregroundColor(Color.theme.accent) :
             Image(systemName: "plus.circle.fill")
                 .font(.title)
-                .foregroundColor(Color.red)
+                .foregroundColor(Color.theme.accent)
         }
     }
     var addButton: some View{
         
-        return Button(action: addItem, label: {
-            Image(systemName: "plus.circle")
-                .font(.title)
-                .foregroundColor(Color.red)
-        })
+        return Button("Save", action: addItem)
     }
     
     var editButton: some View {
@@ -149,10 +150,10 @@ struct ContentView: View {
             editMode == .inactive ?
             Image(systemName: "pencil.circle")
                 .font(.title)
-                .foregroundColor(Color.red) :
+                .foregroundColor(Color.theme.accent) :
             Image(systemName: "pencil.circle.fill")
                 .font(.title)
-                .foregroundColor(Color.red)
+                .foregroundColor(Color.theme.accent)
         }
     }
     
@@ -205,6 +206,8 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        Group {
+            ContentView()
+        }
     }
 }

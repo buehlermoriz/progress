@@ -16,6 +16,7 @@
 		C524C34E285B773700082242 /* progressTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C524C34D285B773700082242 /* progressTests.swift */; };
 		C524C358285B773700082242 /* progressUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C524C357285B773700082242 /* progressUITests.swift */; };
 		C524C35A285B773700082242 /* progressUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C524C359285B773700082242 /* progressUITestsLaunchTests.swift */; };
+		C524C368285CB67A00082242 /* color.swift in Sources */ = {isa = PBXBuildFile; fileRef = C524C367285CB67A00082242 /* color.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		C524C353285B773700082242 /* progressUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = progressUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C524C357285B773700082242 /* progressUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = progressUITests.swift; sourceTree = "<group>"; };
 		C524C359285B773700082242 /* progressUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = progressUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		C524C367285CB67A00082242 /* color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = color.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 		C524C336285B773600082242 /* progress */ = {
 			isa = PBXGroup;
 			children = (
+				C524C366285CB65700082242 /* Extensions */,
 				C524C337285B773600082242 /* progressApp.swift */,
 				C524C339285B773600082242 /* ContentView.swift */,
 				C524C33B285B773700082242 /* Assets.xcassets */,
@@ -131,6 +134,14 @@
 				C524C359285B773700082242 /* progressUITestsLaunchTests.swift */,
 			);
 			path = progressUITests;
+			sourceTree = "<group>";
+		};
+		C524C366285CB65700082242 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C524C367285CB67A00082242 /* color.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -266,6 +277,7 @@
 				C524C341285B773700082242 /* Persistence.swift in Sources */,
 				C524C33A285B773600082242 /* ContentView.swift in Sources */,
 				C524C344285B773700082242 /* progress.xcdatamodeld in Sources */,
+				C524C368285CB67A00082242 /* color.swift in Sources */,
 				C524C338285B773600082242 /* progressApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -431,6 +443,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -460,6 +473,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
