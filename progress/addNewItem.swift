@@ -25,14 +25,14 @@ struct addNewItem: View {
     @State var newIterations : String = ""
     
     var body: some View {
-        VStack(spacing: 0){
+        NavigationView{
+            VStack(spacing: 0){
                 Form{
                     Section( header: Text("Add new Task")) {
                         TextField("Task", text: self.$newTask)
                         TextField("Weight", text: self.$newWeight).keyboardType(UIKeyboardType.numberPad)
                         TextField("Iterations", text: self.$newIterations).keyboardType(UIKeyboardType.numberPad)
                     }
-                    
                 }
                 List{
                     Section( header: Text("Preview")) {
@@ -55,16 +55,21 @@ struct addNewItem: View {
                                 .foregroundColor(Color.gray)
                             }
                         }
+                    }
                 }
+                addButton
+            }
+     .navigationTitle("Add new")
+            .toolbar {
+                ToolbarItemGroup(placement: .navigationBarTrailing){
+                    Button(action: {dismiss()}, label: {Text("cancel")})
                 }
-            addButton
- 
-    }
-    }
+            }
+        }   }
     
     var addButton: some View{
         
-        return Button("Save", action: addItem)
+        return Button("Save", action: addItem).padding()
     }
     
     private func addItem() {

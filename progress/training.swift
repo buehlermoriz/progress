@@ -8,18 +8,62 @@
 import SwiftUI
 
 struct training: View {
+    
+    @State var  countItems = 0
+    @State var progressTraining = 0
+    
+    @FetchRequest(
+        sortDescriptors: [NSSortDescriptor(keyPath: \Item.id, ascending: true)],
+        animation: .default)
+    
+    private var items: FetchedResults<Item>
+    
     @Environment (\.managedObjectContext) private var viewContext
     @Environment (\.dismiss) private var dismiss
     var body: some View {
         NavigationView{
             VStack{
-                Text("Hello, World!")
-                Button("close",action: {dismiss()})
-            }
+                        HStack(alignment: .center){
+                            VStack(alignment: .leading){
+                                Text(items[progressTraining].task!)
+                                    .font(.title)
+                                    .fontWeight(.bold)
+                            }
+                            Spacer()
+                            VStack(alignment: .center){
+                                HStack(alignment: .center){
+                                    Text(items[progressTraining].weight!)
+                                        .font(.largeTitle)
+                                        .foregroundColor(Color.theme.accent)
+                                    Text("kg")}
+                                HStack(alignment: .center){Text(items[progressTraining].itterations!)
+                                        .foregroundColor(Color.gray)
+                                    Text("x")}
+                                .foregroundColor(Color.gray)
+                            }
+                        }
+     
+             Button("next", action: handleTraining)
+            }.navigationTitle("Training")
+                .toolbar {
+                    ToolbarItemGroup(placement: .navigationBarTrailing){
+                        Button(action: {dismiss()}, label: {Text("cancel")})
+                    }
+                }
                 
             
            
-        }.navigationTitle("Training")
+        }
+    }
+    
+    func handleTraining(){
+        let countItems = items.count - 1
+        if countItems > progressTraining {
+            progressTraining += 1
+        }
+        else if countItems == progressTraining {
+            dismiss()
+        }
     }
 }
 

@@ -72,15 +72,8 @@ struct ContentView: View {
                 
                 HStack{
                     editButton
-                    toggleOverlay
-                    Button{if showTrainingView == false {
-                        showTrainingView = true
-                    } else {
-                        showTrainingView = false
-                    }
-                    } label: {
-                        Text("toggle")
-                    }
+                    trainingButton
+                    addNewButton
                 }.padding()
             }
             
@@ -88,7 +81,7 @@ struct ContentView: View {
     }
     
     // Mo -- Custom Buttons
-    var toggleOverlay: some View{
+    var addNewButton: some View{
         return Button{
             if showAddNewItem == false {
                 showAddNewItem = true
@@ -99,6 +92,20 @@ struct ContentView: View {
             Image(systemName: "plus.circle")
                 .font(.title)
                 .foregroundColor(Color.theme.accent)
+        }
+    }
+    
+    var trainingButton: some View{
+        return Button{
+            if showTrainingView == false {
+                showTrainingView = true
+            } else {
+                showTrainingView = false
+            }
+        } label: {
+            Image(systemName: "play.circle")
+                .font(.system(size: 70))
+                .foregroundColor(Color.theme.blue)
         }
     }
     
