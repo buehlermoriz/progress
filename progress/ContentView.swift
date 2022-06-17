@@ -16,7 +16,10 @@ struct ContentView: View {
     @State var newWeight : String = ""
     @State var newIterations : String = ""
     
-    @State var showOverlay = true
+    // mo -- Show oter pages
+    
+    @State var showAddNewItem = false
+    @State private var showTrainingView = false
     
     
     //Editmodestuff
@@ -24,9 +27,13 @@ struct ContentView: View {
     
     @Environment(\.managedObjectContext) private var viewContext
     
+    
+    // Mo -- Get training
+    
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Item.task, ascending: true)],
+        sortDescriptors: [NSSortDescriptor(keyPath: \Item.id, ascending: true)],
         animation: .default)
+    
     private var items: FetchedResults<Item>
     
     var body: some View {
@@ -58,85 +65,41 @@ struct ContentView: View {
                     }.onDelete(perform: deleteItems)
                 }.navigationTitle("Progress")
                     .environment(\.editMode, $editMode)
-                    .toolbar {
-                        ToolbarItemGroup(placement: .navigationBarTrailing){
-                            if showOverlay {
-                                addButton
-                            }
-                        }
-                    }
-                    .overlay( searchBar)
+                // mo -- display other pages
+                    .sheet(isPresented: $showTrainingView){training()}
+                    .sheet(isPresented: $showAddNewItem){addNewItem()}
                     .accentColor(.theme.accent)
                 
                 HStack{
                     editButton
                     toggleOverlay
+                    Button{if showTrainingView == false {
+                        showTrainingView = true
+                    } else {
+                        showTrainingView = false
+                    }
+                    } label: {
+                        Text("toggle")
+                    }
                 }.padding()
             }
             
         }
     }
     
-    // Mo -- Custom Views
-    var searchBar : some View {
-        VStack(spacing: 0){
-            if showOverlay {
-                Form{
-                    Section( header: Text("Add new Task")) {
-                        TextField("Task", text: self.$newTask)
-                        TextField("Weight", text: self.$newWeight).keyboardType(UIKeyboardType.numberPad)
-                        TextField("Iterations", text: self.$newIterations).keyboardType(UIKeyboardType.numberPad)
-                    }
-                    
-                }
-                List{
-                    Section( header: Text("Preview")) {
-                        HStack(alignment: .center){
-                            VStack(alignment: .leading){
-                                Text(newTask)
-                                    .font(.title)
-                                    .fontWeight(.bold)
-                            }
-                            Spacer()
-                            VStack(alignment: .center){
-                                HStack(alignment: .center){
-                                    Text(newWeight)
-                                        .font(.largeTitle)
-                                        .foregroundColor(Color.theme.accent)
-                                    Text("kg")}
-                                HStack(alignment: .center){Text(newIterations)
-                                        .foregroundColor(Color.gray)
-                                    Text("x")}
-                                .foregroundColor(Color.gray)
-                            }
-                        }
-                }
-                }
-        }
-    }
-    }
-    
     // Mo -- Custom Buttons
     var toggleOverlay: some View{
         return Button{
-            if showOverlay == false {
-                showOverlay = true
+            if showAddNewItem == false {
+                showAddNewItem = true
             } else {
-                showOverlay = false
+                showAddNewItem = false
             }
         } label: {
-            showOverlay == false ?
             Image(systemName: "plus.circle")
-                .font(.title)
-                .foregroundColor(Color.theme.accent) :
-            Image(systemName: "plus.circle.fill")
                 .font(.title)
                 .foregroundColor(Color.theme.accent)
         }
-    }
-    var addButton: some View{
-        
-        return Button("Save", action: addItem)
     }
     
     var editButton: some View {
@@ -157,35 +120,6 @@ struct ContentView: View {
         }
     }
     
-    
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(context: viewContext)
-            newItem.task = newTask
-            newItem.id = randomString(length: 5)
-            newItem.weight = newWeight
-            newItem.itterations = newIterations
-            
-            do {
-                try viewContext.save()
-                showOverlay = false
-                newTask = ""
-                newWeight = ""
-                newIterations = ""
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
-        }
-    }
-    
-    // Mo -- random String as ID - maybe change with coreData.lengh +1
-    func randomString(length: Int) -> String {
-        let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-        return String((0..<length).map{ _ in letters.randomElement()! })
-    }
     
     private func deleteItems(offsets: IndexSet) {
         withAnimation {

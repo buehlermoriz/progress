@@ -17,6 +17,8 @@
 		C524C358285B773700082242 /* progressUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C524C357285B773700082242 /* progressUITests.swift */; };
 		C524C35A285B773700082242 /* progressUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C524C359285B773700082242 /* progressUITestsLaunchTests.swift */; };
 		C524C368285CB67A00082242 /* color.swift in Sources */ = {isa = PBXBuildFile; fileRef = C524C367285CB67A00082242 /* color.swift */; };
+		C524C36A285CDDB600082242 /* training.swift in Sources */ = {isa = PBXBuildFile; fileRef = C524C369285CDDB600082242 /* training.swift */; };
+		C524C36C285CE3C800082242 /* addNewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C524C36B285CE3C800082242 /* addNewItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +52,8 @@
 		C524C357285B773700082242 /* progressUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = progressUITests.swift; sourceTree = "<group>"; };
 		C524C359285B773700082242 /* progressUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = progressUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		C524C367285CB67A00082242 /* color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = color.swift; sourceTree = "<group>"; };
+		C524C369285CDDB600082242 /* training.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = training.swift; sourceTree = "<group>"; };
+		C524C36B285CE3C800082242 /* addNewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addNewItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +104,8 @@
 		C524C336285B773600082242 /* progress */ = {
 			isa = PBXGroup;
 			children = (
+				C524C36B285CE3C800082242 /* addNewItem.swift */,
+				C524C369285CDDB600082242 /* training.swift */,
 				C524C366285CB65700082242 /* Extensions */,
 				C524C337285B773600082242 /* progressApp.swift */,
 				C524C339285B773600082242 /* ContentView.swift */,
@@ -275,8 +281,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				C524C341285B773700082242 /* Persistence.swift in Sources */,
+				C524C36C285CE3C800082242 /* addNewItem.swift in Sources */,
 				C524C33A285B773600082242 /* ContentView.swift in Sources */,
 				C524C344285B773700082242 /* progress.xcdatamodeld in Sources */,
+				C524C36A285CDDB600082242 /* training.swift in Sources */,
 				C524C368285CB67A00082242 /* color.swift in Sources */,
 				C524C338285B773600082242 /* progressApp.swift in Sources */,
 			);

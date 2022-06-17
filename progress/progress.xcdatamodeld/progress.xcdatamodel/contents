@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21F79" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Item" representedClassName="Item" syncable="YES" codeGenerationType="class">
-        <attribute name="category" optional="YES" attributeType="String"/>
-        <attribute name="id" attributeType="String" defaultValueString="1"/>
+        <attribute name="id" attributeType="String"/>
         <attribute name="itterations" attributeType="String" defaultValueString="1"/>
         <attribute name="task" attributeType="String" defaultValueString="1"/>
         <attribute name="weight" attributeType="String" defaultValueString="1"/>
     </entity>
     <elements>
-        <element name="Item" positionX="-63" positionY="-18" width="128" height="104"/>
+        <element name="Item" positionX="-63" positionY="-18" width="128" height="89"/>
     </elements>
 </model>
