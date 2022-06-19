@@ -12,6 +12,9 @@ struct training: View {
     @State var  countItems = 0
     @State var progressTraining = 0
     
+    private var progressView = UIProgressView(progressViewStyle: .default)
+    
+    
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Item.id, ascending: true)],
         animation: .default)
@@ -20,17 +23,16 @@ struct training: View {
     
     @Environment (\.managedObjectContext) private var viewContext
     @Environment (\.dismiss) private var dismiss
+   
     var body: some View {
         NavigationView{
             VStack{
-                        HStack(alignment: .center){
-                            VStack(alignment: .leading){
+              
+progressView
+                Spacer()
                                 Text(items[progressTraining].task!)
                                     .font(.title)
                                     .fontWeight(.bold)
-                            }
-                            Spacer()
-                            VStack(alignment: .center){
                                 HStack(alignment: .center){
                                     Text(items[progressTraining].weight!)
                                         .font(.largeTitle)
@@ -40,9 +42,7 @@ struct training: View {
                                         .foregroundColor(Color.gray)
                                     Text("x")}
                                 .foregroundColor(Color.gray)
-                            }
-                        }
-     
+                            Spacer()
              Button("next", action: handleTraining)
             }.navigationTitle("Training")
                 .toolbar {
